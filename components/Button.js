@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { COLORS, SIZES, FONTS, SHADOWS } from '../constants'
 
 export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
     return (
         <TouchableOpacity style={[styles.circleBtn, { ...props }]}>
+            <Image source={imgUrl} resizeMode='contain' style={styles.image} />
         </TouchableOpacity>
     )
 }
 
 export const RectButton = ({ imgUrl, handlePress, ...props }) => {
     return (
-        <TouchableOpacity style={[styles.rectBtn, { ...props }]}>
+        <TouchableOpacity style={[styles.rectBtn, { ...props }]} onPress={handlePress}>
+            <Image source={imgUrl} resizeMode='contain' style={styles.image} />
         </TouchableOpacity>
     )
 }
@@ -28,5 +30,9 @@ const styles = StyleSheet.create({
     },
     rectBtn: {
 
+    },
+    image: {
+        width: 24,
+        height: 24
     }
 })
