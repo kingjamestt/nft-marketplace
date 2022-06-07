@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native'
 import { useState, useEffect } from 'react'
 import { COLORS, NFTData } from '../constants'
+import { NFTCard, FocusedStatusBar, HomeHeader } from '../components'
 
 const Home = () => {
     const [loading, setLoading] = useState(true)
