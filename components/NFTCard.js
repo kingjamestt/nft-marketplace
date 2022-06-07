@@ -1,12 +1,22 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { COLORS, SIZES, SHADOWS, assets } from '../constants'
+import { CircleButton, RectButton } from './Button'
 
 const NFTCard = ({ data }) => {
     const navigation = useNavigation()
 
     return (
         <View style={styles.card}>
+            <View style={styles.inner}>
+                <Image
+                    source={data.image}
+                    resizeMode='cover'
+                    style={styles.image}
+                />
+                <CircleButton imgUrl={assets.heart} right={10} top={10} />
+                <RectButton imgUrl={assets.heart} right={10} top={10} />
+            </View>
             <Text>NFT Card</Text>
         </View>
     )
@@ -19,6 +29,17 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         borderRadius: SIZES.font,
         marginBottom: SIZES.extraLarge,
-        margin: SIZES.base
+        margin: SIZES.base,
+        ...SHADOWS.dark
     },
+    inner: {
+        width: '100%',
+        height: 250
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderTopLeftRadius: SIZES.font,
+        borderTopRightRadius: SIZES.font
+    }
 })

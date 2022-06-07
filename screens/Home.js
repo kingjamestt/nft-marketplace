@@ -22,7 +22,7 @@ const Home = () => {
     )
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.flexContainer}>
             <FocusedStatusBar background={COLORS.primary} />
             <View style={styles.flexContainer}>
                 <View style={styles.flatListContainer}>
