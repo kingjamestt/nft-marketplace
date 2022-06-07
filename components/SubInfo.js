@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { SIZES } from '../constants'
+import { StyleSheet, Text, View, Image } from 'react-native'
+import { SIZES, FONTS, COLORS, SHADOWS, assets } from '../constants'
 
 export const NFTTitle = () => {
     return (
@@ -17,18 +17,20 @@ export const EthPrice = () => {
     )
 }
 
-export const ImageCmp = () => {
+export const ImageCmp = ({ imgUrl, index }) => {
     return (
-        <View>
-            <Text>Image Cmp</Text>
-        </View>
+        <Image
+            source={imgUrl}
+            resizeMode='contain'
+            style={[styles.imageCmp, { marginLeft: index === 0 ? 0 : -SIZES.extraLarge }]} />
     )
 }
 
 export const People = () => {
     return (
         <View style={styles.people}>
-            <Text>People</Text>
+            {[assets.person02, assets.person03, assets.person04]
+                .map((imgUrl, index) => <ImageCmp imgUrl={imgUrl} key={`People-${index}`} index={index} />)}
         </View>
     )
 }
@@ -62,8 +64,10 @@ const styles = StyleSheet.create({
     },
     people: {
         flexDirection: 'row',
-
-
+    },
+    imageCmp: {
+        width: 48,
+        height: 48,
     },
     endDate: {
 
