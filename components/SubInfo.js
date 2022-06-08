@@ -38,7 +38,8 @@ export const People = () => {
 export const EndDate = () => {
     return (
         <View style={styles.endDate}>
-            <Text>EndDate</Text>
+            <Text style={styles.edText1}>Ending In</Text>
+            <Text style={styles.edText2}>12h 30m</Text>
         </View>
     )
 }
@@ -46,7 +47,6 @@ export const EndDate = () => {
 export const SubInfo = () => {
     return (
         <View style={styles.subInfo}>
-            {/* <Text>SubInfo</Text> */}
             <People />
             <EndDate />
         </View>
@@ -70,6 +70,23 @@ const styles = StyleSheet.create({
         height: 48,
     },
     endDate: {
-
-    }
+        paddingHorizontal: SIZES.font,
+        paddingVertical: SIZES.base,
+        backgroundColor: COLORS.white,
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...SHADOWS.light,
+        elevation: 1,
+        maxWidth: '50%',
+    },
+    edText1: {
+        fontFamily: FONTS.regular,
+        fontSize: SIZES.small,
+        color: COLORS.primary
+    },
+    edText2: {
+        fontFamily: FONTS.semiBold,
+        fontSize: SIZES.medium,
+        color: COLORS.primary
+    },
 })

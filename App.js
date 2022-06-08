@@ -3,6 +3,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import Home from './screens/Home'
 import Details from './screens/Details'
+import * as SplashScreen from 'expo-splash-screen'
 
 export default function App() {
   const Stack = createStackNavigator()
