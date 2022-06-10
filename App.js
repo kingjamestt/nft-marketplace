@@ -1,15 +1,17 @@
+import { useCallback, useEffect, useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import * as SplashScreen from 'expo-splash-screen'
+import * as Font from 'expo-font'
 import Home from './screens/Home'
 import Details from './screens/Details'
-import * as SplashScreen from 'expo-splash-screen'
-import { useCallback, useEffect, useState } from 'react'
-import * as Font from 'expo-font'
 
 export default function App() {
+  // Create top-level navigation
   const Stack = createStackNavigator()
+  // Set initial state
   const [fontsLoaded, setFontsLoaded] = useState(false)
-
+  // Define custom navigator theme
   const theme = {
     ...DefaultTheme,
     colors: {
@@ -23,19 +25,13 @@ export default function App() {
     }
   }
 
-  // const [loaded] = useFonts({
-  //   InterBold: require('./assets/fonts/Inter-Bold.ttf'),
-  //   InterSemiBold: require('./assets/fonts/Inter-SemiBold.ttf'),
-  //   InterMedium: require('./assets/fonts/Inter-Medium.ttf'),
-  //   InterRegular: require('./assets/fonts/Inter-Regular.ttf'),
-  //   InterLight: require('./assets/fonts/Inter-Light.ttf'),
-  // })
+  // Load resources whilst showing splash screen
   useEffect(() => {
     async function prepare() {
       try {
         // Keep the splash screen visible while we fetch resources
         await SplashScreen.preventAutoHideAsync();
-        // Pre-load fonts, make any API calls you need to do here
+        // Pre-load fonts or make API calls
         await Font.loadAsync({
           "InterBold": require('./assets/fonts/Inter-Bold.ttf'),
           "InterSemiBold": require('./assets/fonts/Inter-SemiBold.ttf'),
@@ -53,23 +49,15 @@ export default function App() {
 
     prepare();
   }, []);
-
-
-  const ready = useCallback(async () => {
-    if (fontsLoaded) {
-      // This tells the splash screen to hide immediately! If we call this after
-      // `setAppIsReady`, then we may see a blank screen while the app is
-      // loading its initial state and rendering its first pixels. So instead,
-      // we hide the splash screen once we know the root view has already
-      // performed layout.
-      await SplashScreen.hideAsync();
-    }
+  // Hide splash screen after loading resources
+  const onReady = useCallback(async () => {
+    if (fontsLoaded) await SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
+  // return application if resources loaded
   if (!fontsLoaded) return null;
-
   return (
-    <NavigationContainer theme={theme} onReady={ready}>
+    <NavigationContainer theme={theme} onReady={onReady}>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Home'>
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Details' component={Details} />
