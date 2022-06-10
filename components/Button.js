@@ -1,4 +1,4 @@
-import { StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Image, TouchableOpacity, Text } from 'react-native'
 import { COLORS, SIZES, FONTS, SHADOWS } from '../constants'
 
 export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
@@ -9,10 +9,12 @@ export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
     )
 }
 
-export const RectButton = ({ imgUrl, handlePress, ...props }) => {
+export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
     return (
-        <TouchableOpacity style={[styles.rectBtn, { ...props }]} onPress={handlePress}>
-            <Image source={imgUrl} resizeMode='contain' style={styles.image} />
+        <TouchableOpacity
+            style={[styles.rectBtn, { minWidth: minWidth, ...props }]}
+            onPress={handlePress}>
+            <Text style={[styles.rectBtnText, { fontSize: fontSize }]}>Place a bid</Text>
         </TouchableOpacity>
     )
 }
@@ -29,7 +31,14 @@ const styles = StyleSheet.create({
         ...SHADOWS.light,
     },
     rectBtn: {
-
+        backgroundColor: COLORS.primary,
+        borderRadius: SIZES.extraLarge,
+        padding: SIZES.small,
+    },
+    rectBtnText: {
+        color: COLORS.white,
+        fontFamily: FONTS.semiBold,
+        textAlign: 'center'
     },
     image: {
         width: 24,
