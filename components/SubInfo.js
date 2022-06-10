@@ -1,18 +1,20 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { SIZES, FONTS, COLORS, SHADOWS, assets } from '../constants'
 
-export const NFTTitle = () => {
+export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
     return (
         <View>
-            <Text>NFT Title</Text>
+            <Text style={[styles.NFTTitle, { fontSize: titleSize }]}>{title}</Text>
+            <Text style={[styles.NFTSubTitle, { fontSize: subTitleSize }]}>{subTitle}</Text>
         </View>
     )
 }
 
-export const EthPrice = () => {
+export const EthPrice = ({ price }) => {
     return (
-        <View>
-            <Text>Eth Price</Text>
+        <View style={styles.ethPriceContainer}>
+            <Image source={assets.eth} resizeMode='contain' style={styles.ethImage} />
+            <Text style={styles.ethPrice}>{price}</Text>
         </View>
     )
 }
@@ -89,4 +91,26 @@ const styles = StyleSheet.create({
         fontSize: SIZES.medium,
         color: COLORS.primary
     },
+    NFTTitle: {
+        fontFamily: FONTS.semiBold,
+        color: COLORS.primary,
+    },
+    NFTSubTitle: {
+        fontFamily: FONTS.regular,
+        color: COLORS.primary
+    },
+    ethPriceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    ethPrice: {
+        fontSize: SIZES.font,
+        fontFamily: FONTS.medium,
+        color: COLORS.primary
+    },
+    ethImage: {
+        width: 20,
+        height: 20,
+        marginRight: 2
+    }
 })
