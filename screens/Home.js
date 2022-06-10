@@ -23,7 +23,7 @@ const Home = () => {
 
     return (
         <SafeAreaView style={styles.flexContainer}>
-            <FocusedStatusBar background={COLORS.primary} />
+            <FocusedStatusBar backgroundColor={COLORS.primary} />
             <View style={styles.flexContainer}>
                 <View style={styles.flatListContainer}>
                     <FlatList
