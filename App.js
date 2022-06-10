@@ -8,9 +8,9 @@ import Details from './screens/Details'
 
 export default function App() {
   // Create top-level navigation
-  const Stack = createStackNavigator()
+  const Stack = createStackNavigator();
   // Set initial state
-  const [fontsLoaded, setFontsLoaded] = useState(false)
+  const [resLoaded, setResLoaded] = useState(false);
   // Define custom navigator theme
   const theme = {
     ...DefaultTheme,
@@ -38,12 +38,12 @@ export default function App() {
           "InterMedium": require('./assets/fonts/Inter-Medium.ttf'),
           "InterRegular": require('./assets/fonts/Inter-Regular.ttf'),
           "InterLight": require('./assets/fonts/Inter-Light.ttf'),
-        })
+        });
       } catch (e) {
         console.warn(e);
       } finally {
         // Tell the application to render
-        setFontsLoaded(true);
+        setResLoaded(true);
       }
     }
 
@@ -51,11 +51,11 @@ export default function App() {
   }, []);
   // Hide splash screen after loading resources
   const onReady = useCallback(async () => {
-    if (fontsLoaded) await SplashScreen.hideAsync();
-  }, [fontsLoaded]);
+    if (resLoaded) await SplashScreen.hideAsync();
+  }, [resLoaded]);
 
   // return application if resources loaded
-  if (!fontsLoaded) return null;
+  if (!resLoaded) return null;
   return (
     <NavigationContainer theme={theme} onReady={onReady}>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Home'>
